@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://one-small-step.herokuapp.com/admin -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta tags -->
+  <style >
+      body {
+        margin: 0;
+        padding: 10px 20px 20px;
+        font-family: Arial;
+        font-size: 16px;
+      }
+      #map-container {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 940px;
+      }
+      #map {
+        width: 930px;
+        height: 500px;
+      }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Admin for local council of Malaysia to review and track complaints submitted by local residents.">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="copyright" content="2015">
+  <title>Admin Dashboard (demo)</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://one-small-step.herokuapp.com/assets/stylesheets/application.css">
+  <!-- Javascripts -->
+  <script async="" src="http://www.google-analytics.com/analytics.js"></script><script src="./AngelHack2015 Admin Dashboard_files/jquery.min.js"></script>
+  <script src="./AngelHack2015 Admin Dashboard_files/bootstrap.min.js"></script>
+  <script src="./AngelHack2015 Admin Dashboard_files/application.js"></script>
+  
+<link rel="stylesheet" href="http://one-small-step.herokuapp.com/assets/stylesheets/admin.css">
+<link rel="stylesheet" href="http://one-small-step.herokuapp.com/assets/stylesheets/sweet-alert.css">
+<script src="./AngelHack2015 Admin Dashboard_files/sweet-alert.min.js"></script>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+  <![endif]-->
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawTotalReports);
+      google.setOnLoadCallback(drawOpenReports);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      // function drawChart() {
+
+      //   // Create the data table.
+      //   var data = new google.visualization.DataTable();
+      //   data.addColumn('string', 'Topping');
+      //   data.addColumn('number', 'Slices');
+      //   data.addRows([
+      //     ['Mushrooms', 3],
+      //     ['Onions', 1],
+      //     ['Olives', 1],
+      //     ['Zucchini', 1],
+      //     ['Pepperoni', 2]
+      //   ]);
+
+      //   // Set chart options
+      //   var options = {'title':'How Much Pizza I Ate Last Night',
+      //                  'width':400,
+      //                  'height':300};
+
+      //   // Instantiate and draw our chart, passing in some options.
+
+   function drawTotalReports() {
+      var queryString = encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
+
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1weVDYb4L1gY7f_c5b4dElJyxF2eNGc-x-jhc6k6zSN8/edit?usp=sharing' + queryString);
+      query.send(totalReportsQueryResponse);
+    }
+
+    function totalReportsQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('total_reports'));
+      // chart.draw(data, { height: 400 });
+      chart.draw(data);
+    }
+
+
+    function drawOpenReports() {
+      var queryString = encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
+
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1wll5HMa2ea8dGTQ0Z5B3ziINqULQPo9k0R9SZmP9mLs/edit?usp=sharing' + queryString);
+      query.send(openReportsQueryResponse);
+    }
+
+    function openReportsQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('open_reports'));
+      // chart.draw(data, { height: 400 });
+      chart.draw(data);
+    }
+
+    // google.setOnLoadCallback(drawStuff);
+
+    //     function drawStuff() {
+    //       var data = new google.visualization.DataTable();
+    //       data.addColumn('string', 'Complaint Type');
+    //       data.addColumn('number', 'Total number');
+    //       data.addRows([
+    //         ['Pothole', 17],
+    //         ['Illegal parking', 14],
+    //         ['Rubbish dumping', 13],
+    //         ['Flooding', 11]
+    //       ]);
+
+    //      var options = {
+    //        title: 'Total number of complaints',
+    //        width: 500,
+    //        height: 300,
+    //        legend: 'none',
+    //        bar: {groupWidth: '95%'},
+    //        vAxis: { gridlines: { count: 4 } }
+    //      };
+
+    //      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    //      chart.draw(data, options);
+
+    //      document.getElementById('format-select').onchange = function() {
+    //        options['vAxis']['format'] = this.value;
+    //        chart.draw(data, options);
+    //      };
+    //   };
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="data.json"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn-history/r315/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script>
+
+    <script>
+      function initialize() {
+          var center = new google.maps.LatLng(3.065335, 101.582731);
+          var mpsj = new google.maps.LatLng(3.051515, 101.582345);
+          var ss17 = new google.maps.LatLng(3.076600, 101.582269);
+          var ss19 = new google.maps.LatLng(3.073691, 101.575285);
+          var ss18 = new google.maps.LatLng(3.065978, 101.584984);
+          var ss15 = new google.maps.LatLng(3.078627, 101.589348);
+          var usj2 = new google.maps.LatLng(3.059910, 101.588454);
+          var delima = new google.maps.LatLng(3.064735, 101.569470);
+          var usj8 = new google.maps.LatLng(3.043865, 101.591571);
+          var subang2 = new google.maps.LatLng(3.054879, 101.598137);
+          var ss13 = new google.maps.LatLng(3.068163, 101.598524);
+          var tujuan = new google.maps.LatLng(3.060535, 101.575564);
+          var small = new google.maps.LatLng(3.046908, 101.564363);
+          var x_coord1 = ss17["A"];
+          var y_coord1 = ss17["F"];
+          var x_coord2 = ss19["A"];
+          var y_coord2 = ss19["F"];
+          var x_coord3 = ss18["A"];
+          var y_coord3 = ss18["F"];
+          var x_coord4 = usj2["A"];
+          var y_coord4 = usj2["F"];
+          var x_coord5 = ss15["A"];
+          var y_coord5 = ss15["F"];
+          var x_coord6 = delima["A"];
+          var y_coord6 = delima["F"];
+          var x_coord7 = usj8["A"];
+          var y_coord7 = usj8["F"];
+          var x_coord8 = subang2["A"];
+          var y_coord8 = subang2["F"];
+          var x_coord9 = ss13["A"];
+          var y_coord9 = ss13["F"];
+          var x_coord10 = tujuan["A"];
+          var y_coord10 = tujuan["F"];
+          var x_coord11 = small["A"];
+          var y_coord11 = small["F"];
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: center,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          var icon = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+          var currentMarker = new google.maps.Marker({
+              position: mpsj,
+              map: map,
+              icon: icon,
+              title: "Our current location!"
+          });
+
+          var markers = [];
+
+          for (var i = 0; i < 730; i++) {
+            var latLng = new google.maps.LatLng(x_coord1,
+                y_coord1);
+            var marker = new MarkerWithLabel({
+              position: latLng,
+              labelContent: "Pothole"
+            }); 
+            markers.push(marker);
+            if (i < 50) {
+              y_coord1 = y_coord1
+              x_coord1 = x_coord1
+            } else if (i < 153) {
+              y_coord1 = y_coord2
+              x_coord1 = x_coord2
+            } else if (i < 200) {
+              y_coord1 = y_coord4
+              x_coord1 = x_coord4  
+            } else if (i < 281) {
+              y_coord1 = y_coord5
+              x_coord1 = x_coord5
+            } else if (i < 359) {
+              y_coord1 = y_coord6
+              x_coord1 = x_coord6    
+            } else if (i < 413) {
+              y_coord1 = y_coord7
+              x_coord1 = x_coord7    
+            } else if (i < 483) {
+              y_coord1 = y_coord8
+              x_coord1 = x_coord8  
+            } else if (i < 593) {
+              y_coord1 = y_coord9
+              x_coord1 = x_coord9
+            } else if (i < 631) {
+              y_coord1 = y_coord10
+              x_coord1 = x_coord10
+            } else if (i < 670) {
+              y_coord1 = y_coord11
+              x_coord1 = x_coord11
+            }else {
+              y_coord1 = y_coord3
+              x_coord1 = x_coord3
+            }
+          };
+//TESTING MARKER CLUSTER MAAP INFOZ
+            var infowindow = new google.maps.InfoWindow({
+              content: "Giant pothole"
+            });
+            var clusterOptions = { zoomOnClick: false }
+            var markerCluster = new MarkerClusterer(map, markers, clusterOptions);
+            globalMarker = markers.slice();
+            google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+              var content = '';
+
+              // Convert lat/long from cluster object to a usable MVCObject
+              var info = new google.maps.MVCObject;
+              info.set('position', cluster.center_);
+
+              //----
+              //Get markers
+              var markers = cluster.getMarkers();
+
+              var title = "";
+              //Get all the titles
+              for(var i = 0; i < markers.length; i++) {
+                  title = "Giant Pothole";
+              }
+              //----
+
+
+              infowindow.close();
+              infowindow.setContent(title); //set infowindow content to titles
+              infowindow.open(map, info);
+
+              google.maps.event.addListener(map, 'zoom_changed', function() { 
+                infowindow.close() 
+              });
+
+            });
+          
+
+  
+//TEST ENDS 
+
+          var markerCluster = new MarkerClusterer(map, markers);
+          google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+            // markerCluster.preventDefault();
+            infowindow.open(map, this);
+            debugger
+          });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://one-small-step.herokuapp.com/">Name of app</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="./AngelHack2015 Admin Dashboard_files/AngelHack2015 Admin Dashboard.html">Admin Dashboard</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://one-small-step.herokuapp.com/admin#" aria-expanded="false">Faisal Ariff&nbsp;<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="http://one-small-step.herokuapp.com/user/dashboard">User 1</a></li>
+              <li><a href="http://one-small-step.herokuapp.com/user/dashboard">User 2</a></li>
+              <li class="divider"></li>
+              <li><a href="http://one-small-step.herokuapp.com/">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Container -->
+  <div class="container">
+    <div class="alert alert-warning" role="alert">Majlis Perbandaran Subang Jaya</div>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="http://one-small-step.herokuapp.com/admin#funds" aria-expanded="false">Map</a></li>
+      <li class=""><a data-toggle="tab" href="http://one-small-step.herokuapp.com/admin#users" aria-expanded="true">Complaints</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="users" class="tab-pane fade">
+        <div style="float: left"><h3>Complaints <a href="" class="btn btn-warning btn-xs">June 2015</a></h3></div>
+        <div style="float: right; margin-top: 20px; margin-bottom: 10px;">
+          <p>Filter by
+            <select>
+              <option value="complaint_type">Complaint Type</option>
+              <option value="postcode">Postcode</option>
+              <option value="date_reported">Date Reported</option>
+              <option value="status">Status</option>
+            </select>
+          </p>
+        </div>
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <td><strong>Complaint Type</strong></td>
+              <td><strong>Postcode</strong></td>
+              <td><strong>Date Reported</strong></td>
+              <td><strong>Status</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pothole</td>
+              <td>46000</td>
+              <td>1 June 2015</td>
+              <td>Open</td>
+            </tr>
+            <tr>
+              <td>Pothole</td>
+              <td>46350</td>
+              <td>29 May 2015</td>
+              <td>Open</td>
+            </tr>
+            <tr>
+              <td>Rubbish</td>
+              <td>46200</td>
+              <td>28 May 2015</td>
+              <td>Working on</td>
+            </tr>
+            <tr>
+              <td>Flooding</td>
+              <td>46400</td>
+              <td>27 May 2015</td>
+              <td>Working on</td>
+            </tr>
+            <tr>
+              <td>Illegal parking</td>
+              <td>46300</td>
+              <td>26 May 2015</td>
+              <td>Closed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="funds" class="tab-pane active fade in">
+        <div id="map-container"><div id="map"></div></div>
+        <!-- <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <td><strong>NGO Name</strong></td>
+              <td><strong>Receiver name</strong></td>
+              <td><strong>Receiver phone</strong></td>
+              <td><strong>Receiver account number</strong></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rails Girls KL</td>
+              <td>Person 1</td>
+              <td>1800639426</td>
+              <td>5184680430000279</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#giftModal" data-ngo="Rails Girls KL|1">Gift</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Women Techmakers</td>
+              <td>Person 2</td>
+              <td>1800639426</td>
+              <td>5184680430000279</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#giftModal" data-ngo="Women Techmakers|2">Gift</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Code Equality</td>
+              <td>Person 3</td>
+              <td>1800639426</td>
+              <td>5184680430000279</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#giftModal" data-ngo="Code Equality|3">Gift</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Women Who Code</td>
+              <td>Person 4</td>
+              <td>1800639426</td>
+              <td>5184680430000279</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#giftModal" data-ngo="Women Who Code|4">Gift</button>
+              </td>
+            </tr>
+            <tr>
+              <td>UN Women SG</td>
+              <td>Person 5</td>
+              <td>1800639426</td>
+              <td>5184680430000279</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#giftModal" data-ngo="UN Women SG|5">Gift</button>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+    </div>
+    <div class="modal fade" id="giftModal" tabindex="-1" role="dialog" aria-labelledby="giftModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Gift</h4>
+          </div>
+          <div class="modal-body">
+            <form id="gifting">
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">Recipient:</label>
+                <input type="text" class="form-control" name="gift[ngo_name]" id="recipient-name" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="control-label">Amount (in USD):</label>
+                <input type="text" class="form-control" name="gift[amount]" id="amount">
+              </div>
+              <input type="hidden" name="gift[id]" id="recipient-id">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Gift!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © App Name 2015.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('#giftModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('ngo').split("|")
+        var modal = $(this)
+        modal.find('.modal-body #recipient-name').val(recipient[0])
+        modal.find('.modal-body #recipient-id').val(recipient[1])
+      });
+      $("#gifting").submit(function(event) {
+        var form = $(this);
+        event.preventDefault();
+        swal("Good job!", "You have donated to " + $("#recipient-name").val(), "success");
+        $('#giftModal').one('hidden.bs.modal').modal('hide');
+      });
+    });
+  </script>
+
+
+
+
+</body></html>
