@@ -14,7 +14,9 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'logger'
-
+require 'rest-client'
+require 'net/http'
+require 'openssl'
 require 'sinatra'
 require "sinatra/reloader" if development?
 

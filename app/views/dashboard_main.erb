@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style >
+      #map-container {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 840px;
+      }
+      #map {
+        width: 835px;
+        height: 500px;
+      }
+      #chart_div {
+        width: 835px;
+        height: 500px;
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Community Hero - Admin Dashboard</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="data.json"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn-history/r315/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script>
+
+        <script>
+      function initialize() {
+          var center = new google.maps.LatLng(3.065335, 101.582731);
+          var mpsj = new google.maps.LatLng(3.051515, 101.582345);
+          var ss17 = new google.maps.LatLng(3.076600, 101.582269);
+          var ss19 = new google.maps.LatLng(3.073691, 101.575285);
+          var ss18 = new google.maps.LatLng(3.065978, 101.584984);
+          var ss15 = new google.maps.LatLng(3.078627, 101.589348);
+          var usj2 = new google.maps.LatLng(3.059910, 101.588454);
+          var delima = new google.maps.LatLng(3.064735, 101.569470);
+          var usj8 = new google.maps.LatLng(3.043865, 101.591571);
+          var subang2 = new google.maps.LatLng(3.054879, 101.598137);
+          var ss13 = new google.maps.LatLng(3.068163, 101.598524);
+          var tujuan = new google.maps.LatLng(3.060535, 101.575564);
+          var small = new google.maps.LatLng(3.046908, 101.564363);
+          var x_coord1 = ss17["A"];
+          var y_coord1 = ss17["F"];
+          var x_coord2 = ss19["A"];
+          var y_coord2 = ss19["F"];
+          var x_coord3 = ss18["A"];
+          var y_coord3 = ss18["F"];
+          var x_coord4 = usj2["A"];
+          var y_coord4 = usj2["F"];
+          var x_coord5 = ss15["A"];
+          var y_coord5 = ss15["F"];
+          var x_coord6 = delima["A"];
+          var y_coord6 = delima["F"];
+          var x_coord7 = usj8["A"];
+          var y_coord7 = usj8["F"];
+          var x_coord8 = subang2["A"];
+          var y_coord8 = subang2["F"];
+          var x_coord9 = ss13["A"];
+          var y_coord9 = ss13["F"];
+          var x_coord10 = tujuan["A"];
+          var y_coord10 = tujuan["F"];
+          var x_coord11 = small["A"];
+          var y_coord11 = small["F"];
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: center,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          var icon = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+          var currentMarker = new google.maps.Marker({
+              position: mpsj,
+              map: map,
+              icon: icon,
+              title: "Our current location!"
+          });
+
+          var markers = [];
+
+          for (var i = 0; i < 730; i++) {
+            var latLng = new google.maps.LatLng(x_coord1,
+                y_coord1);
+            var marker = new MarkerWithLabel({
+              position: latLng,
+              labelContent: "Pothole"
+            }); 
+            markers.push(marker);
+            if (i < 50) {
+              y_coord1 = y_coord1
+              x_coord1 = x_coord1
+            } else if (i < 153) {
+              y_coord1 = y_coord2
+              x_coord1 = x_coord2
+            } else if (i < 200) {
+              y_coord1 = y_coord4
+              x_coord1 = x_coord4  
+            } else if (i < 281) {
+              y_coord1 = y_coord5
+              x_coord1 = x_coord5
+            } else if (i < 359) {
+              y_coord1 = y_coord6
+              x_coord1 = x_coord6    
+            } else if (i < 413) {
+              y_coord1 = y_coord7
+              x_coord1 = x_coord7    
+            } else if (i < 483) {
+              y_coord1 = y_coord8
+              x_coord1 = x_coord8  
+            } else if (i < 593) {
+              y_coord1 = y_coord9
+              x_coord1 = x_coord9
+            } else if (i < 631) {
+              y_coord1 = y_coord10
+              x_coord1 = x_coord10
+            } else if (i < 670) {
+              y_coord1 = y_coord11
+              x_coord1 = x_coord11
+            }else {
+              y_coord1 = y_coord3
+              x_coord1 = x_coord3
+            }
+          };
+//MARKER CLUSTER MAAP INFOZ
+            var infowindow = new google.maps.InfoWindow({
+              content: "Giant pothole"
+            });
+            var clusterOptions = { zoomOnClick: false }
+            var markerCluster = new MarkerClusterer(map, markers, clusterOptions);
+            globalMarker = markers.slice();
+            google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+              var content = '';
+
+              // Convert lat/long from cluster object to a usable MVCObject
+              var info = new google.maps.MVCObject;
+              info.set('position', cluster.center_);
+
+              //----
+              //Get markers
+              var markers = cluster.getMarkers();
+
+              var title = "";
+              //Get all the titles
+              for(var i = 0; i < markers.length; i++) {
+                  title = "Giant Pothole";
+              }
+              //----
+
+
+              infowindow.close();
+              infowindow.setContent(title); //set infowindow content to titles
+              infowindow.open(map, info);
+
+              google.maps.event.addListener(map, 'zoom_changed', function() { 
+                infowindow.close() 
+              });
+            });
+//ENDS 
+
+          var markerCluster = new MarkerClusterer(map, markers);
+          google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+            // markerCluster.preventDefault();
+            infowindow.open(map, this);
+            debugger
+          });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+<!-- CHARTS api -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+
+        google.load('visualization', '1', {packages: ['corechart', 'bar']});
+        google.setOnLoadCallback(drawMaterial);
+
+        function drawMaterial() {
+            var data = google.visualization.arrayToDataTable([
+              ['City', '2014 Pothole cases', '2013 Pothole cases'],
+              ['Subang Jaya', 5175, 5008],
+              ['Petaling Jaya', 3792, 3694],
+              ['Kajang', 2695, 2896],
+              ['Kepong', 2099, 1953],
+              ['Shah Alam', 1526, 1517]
+            ]);
+
+            var options = {
+              chart: {
+                title: 'Numbers of Pothole Case Reported'
+              },
+              hAxis: {
+                title: 'Total cases',
+                minValue: 0,
+              },
+              vAxis: {
+                title: 'City'
+              },
+              bars: 'horizontal',
+              isStacked: true
+            };
+            var material = new google.charts.Bar(document.getElementById('chart_div'));
+            material.draw(data, options);
+        } 
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav app_name" href="/"><span style="color: #444">community</span>Hero <span class="dashboard_logo">&nbsp;&nbsp;Admin Dashboard</span></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="admin_name" href="">Faisal Arif&nbsp;&nbsp;<i class="fa fa-angle-down fa-1x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container content_frame dashboard_frame">
+        <div class="main_content">
+            <div class="rows_frame">
+
+
+                  <div class="container dashboard_container">
+                    <div class="alert alert-warning" role="alert">Majlis Perbandaran Subang Jaya</div>
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a data-toggle="tab" href="#map" aria-expanded="false">Map</a></li>
+                      <li class=""><a data-toggle="tab" href="#complaints" aria-expanded="true">Complaints</a></li>
+                      <li class=""><a data-toggle="tab" href="#analytics" aria-expanded="true">Analytics</a></li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div id="map" class="tab-pane active fade in">
+                            <div id="map-container"><div id="map"></div></div>
+                        </div>
+                      
+                        <div id="complaints" class="tab-pane fade">
+                            <div style="float: left"><h3>Complaints <a href="" class="btn btn-warning btn-xs">June 2015</a></h3></div>
+                            <div style="float: right; margin-top: 20px; margin-bottom: 10px;">
+                              <p>Filter by
+                                <select>
+                                  <option value="complaint_type">Complaint Type</option>
+                                  <option value="postcode">Postcode</option>
+                                  <option value="date_reported">Date Reported</option>
+                                  <option value="status">Status</option>
+                                </select>
+                              </p>
+                            </div>
+                            <table class="table table-condensed table-hover">
+                              <thead>
+                                <tr>
+                                  <td><strong>Complaint Type</strong></td>
+                                  <td><strong>Postcode</strong></td>
+                                  <td><strong>Date Reported</strong></td>
+                                  <td><strong>Status</strong></td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Pothole</td>
+                                  <td>46000</td>
+                                  <td>1 June 2015</td>
+                                  <td>
+                                    <select class="status_picker">
+                                      <option>Closed</option>
+                                      <option>In progress</option>
+                                      <option selected>Open</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Pothole</td>
+                                  <td>46350</td>
+                                  <td>29 May 2015</td>
+                                  <td>
+                                     <select class="status_picker">
+                                      <option>Closed</option>
+                                      <option>In progress</option>
+                                      <option selected>Open</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Rubbish</td>
+                                  <td>46200</td>
+                                  <td>28 May 2015</td>
+                                  <td>
+                                    <select class="status_picker">
+                                      <option>Closed</option>
+                                      <option selected>In progress</option>
+                                      <option>Open</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Flooding</td>
+                                  <td>46400</td>
+                                  <td>27 May 2015</td>
+                                  <td>
+                                      <select class="status_picker">
+                                      <option>Closed</option>
+                                      <option selected>In progress</option>
+                                      <option>Open</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Illegal parking</td>
+                                  <td>46300</td>
+                                  <td>26 May 2015</td>
+                                  <td>
+                                    <select class="status_picker">
+                                      <option selected>Closed</option>
+                                      <option>In progress</option>
+                                      <option>Open</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+
+                        <div id="analytics" class="tab-pane fade">
+                            <div id="container"><img src="./img/graph2.jpg" width="800px" height="700px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix bottom_space"></div>
+
+    <!-- Footer -->
+<!--     <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+

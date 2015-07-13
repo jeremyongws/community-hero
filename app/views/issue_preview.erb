@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Community Hero</title>
+    <title>communityHero</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav app_name" href="#">Community Hero</a>
+                <a class="navbar-brand topnav app_name" href="/"><span style="color: #444">community</span>Hero</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,35 +59,50 @@
     </nav>
 
     <div class="form_bg_picture">
-        <div class="form_content">
+        <div class="form_content preview_content">
             <div class="new_request">-&nbsp;&nbsp;New Request&nbsp;&nbsp;-</div>
             <div class="request_form">
-                <div class="request_title">What type of issue is this?
-                </div>
+                <div class="request_title">Preview Request</div>
+                    <div class="request_container">
+                        <div class="row preview_request_row">
+                            <div class="col-xs-3 report_detail_title">Issue</div>
+                            <div class="col-xs-8 report_detail_desc">Rubbish - illegal dumping</div>
+                        </div>
 
-                <div class="button_form">
-                    <div class="button_option">
-                      <div class="button_div button_icon"><i class="fa fa-cubes fa-1x"></i></div>
-                      <div class="button_div">Uncollected Rubbish</div>
+
+                        <div class="row preview_request_row">
+                            <div class="col-xs-3 report_detail_title">Details</div>
+                            <div class="col-xs-8 report_detail_desc">Dirty Developers dumping rubbish.</div>
+                        </div>
+
+                        <div class="row preview_request_row">
+                            <div class="col-xs-3 report_detail_title">Location</div>
+                            <div class="col-xs-8 report_detail_desc"><img style="width: 260px" src="./img/raja_lumu.jpg"></div>
+                        </div>
+
+
+                        <div class="row preview_request_row">
+                            <div class="col-xs-3 report_detail_title">Pictures</div>
+                            <div class="col-xs-8 report_detail_desc"><img class="report_image" src="./img/rubbish.jpg"></div>
+                        </div>
+
+                        <div class="row preview_request_row">
+                            <div class="col-xs-3 report_detail_title">Status</div>
+                            <div class="col-xs-8 report_detail_desc"><div class="open">Open</div></div>
+                        </div>
+
                     </div>
+            </div>
 
-                    <div class="button_option">
-                      <div class="button_div button_icon"><i class="fa fa-fire fa-1x"></i></div>
-                      <div class="button_div">&nbsp;&nbsp;Illegal Dumping</div>
-                    </div>
-
-                   
+                <div class="bottom_buttons_container">
+                    <div class="continue_button bottom_buttons"><a href="javascript:history.back()" class="btn btn-default btn-lg button_style bottom_button">Back</a></div>    
+                    <div class="continue_button bottom_buttons"><a href="/webapp2" class="btn btn-default btn-lg button_style bottom_button">Continue</a></div>
                 </div>
-
-            <div class="continue_button"><a href="" class="btn btn-default btn-lg button_style">Back</a></div>
-            
-            <div class="continue_button"><a href="" class="btn btn-default btn-lg button_style">Continue</a></div>
-            
-        </div> 
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer>
+<!--     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -95,7 +110,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Community Hero</title>
+    <title>communityHero</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Community Hero</a>
+                <a href="#top"  onclick = $("#menu-close").click(); >communityHero</a>
             </li>
             <li>
                 <a href="#top" onclick = $("#menu-close").click(); >Home</a>
@@ -47,13 +47,10 @@
                 <a href="#about" onclick = $("#menu-close").click(); >About</a>
             </li>
             <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Benefits</a>
+                <a href="#success" onclick = $("#menu-close").click(); >Success stories</a>
             </li>
             <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+                <a href="#moreinfo" onclick = $("#menu-close").click(); >Find out more</a>
             </li>
         </ul>
     </nav>
@@ -61,11 +58,11 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Community Hero</h1>
+            <h1>communityHero</h1>
             <h3>Elevating the community from the ground up.</h3>
             <br>
-            <a href="#about" class="btn btn-dark btn-lg">Web app</a>
-            <a href="#about" class="btn btn-dark btn-lg">Admin dashboard</a>
+            <a href="/webapp" class="btn btn-dark btn-lg">Citizen</a>
+            <a href="/dashboard" class="btn btn-dark btn-lg">Municipal Council</a>
         </div>
     </header>
 
@@ -162,7 +159,7 @@
     </aside>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
+    <section id="success" class="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -172,28 +169,32 @@
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/success-1.jpg" title="Complete repair of potholes in SS19, Subang Jaya">
+                                     <div class="caption" id="sj"><b>Complete repair of potholes in SS19, Subang Jaya</b></div>
+                                    <img id="19sj" class="img-portfolio img-responsive" src="img/success-1.jpg" title="Complete repair of potholes in SS19, Subang Jaya">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/success-2.jpg" title="Eradication of illegal jockeys at Solaris Mont Kiara">
+                                    <div class="caption" id="mk"><b>Eradication of illegal jockeys at Solaris Mont Kiara</b></div>
+                                    <img id="smk" class="img-portfolio img-responsive" src="img/success-2.jpg" title="Eradication of illegal jockeys at Solaris Mont Kiara">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/success-3.jpg" title="Rubbish-free streets in Bandar Puteri, Puchong">
+                                    <div class="caption" id="bp"><b>Rubbish-free streets in Bandar Puteri, Puchong</b></div>
+                                    <img id="bpp" class="img-portfolio img-responsive" src="img/success-3.jpg" title="Rubbish-free streets in Bandar Puteri, Puchong">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/success-4.jpg" title="Unclogged all drains in Berkeley Garden, Klang">
+                                     <div class="caption" id="bg"><b>Unclogged all drains in Berkeley Garden, Klang</b></div>
+                                    <img id="bgk" class="img-portfolio img-responsive" src="img/success-4.jpg" title="Unclogged all drains in Berkeley Garden, Klang">
                                 </a>
                             </div>
                         </div>
@@ -209,7 +210,7 @@
     </section>
 
     <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
+    <aside id="moreinfo" class="call-to-action bg-primary">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -271,10 +272,37 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
-    // Produces img title on hover
-    $(".img-portfolio").mouseover(function() {
-        $(".img-portfolio");
-        debugger
+    // Display image caption on hover
+    $("#19sj").mouseenter(function() {
+        $("#19sj").css("opacity", 0.1);
+        $("#sj").css("opacity", 1);
+    }).mouseleave(function() {
+        $("#19sj").css("opacity", 1);
+        $("#sj").css("opacity", 0);
+    });
+
+    $("#smk").mouseenter(function() {
+        $("#smk").css("opacity", 0.1);
+        $("#mk").css("opacity", 1);
+    }).mouseleave(function() {
+        $("#smk").css("opacity", 1);
+        $("#mk").css("opacity", 0);
+    });
+
+    $("#bpp").mouseenter(function() {
+        $("#bpp").css("opacity", 0.1);
+        $("#bp").css("opacity", 1);
+    }).mouseleave(function() {
+        $("#bpp").css("opacity", 1);
+        $("#bp").css("opacity", 0);
+    });
+
+     $("#bgk").mouseenter(function() {
+        $("#bgk").css("opacity", 0.1);
+        $("#bg").css("opacity", 1);
+    }).mouseleave(function() {
+        $("#bgk").css("opacity", 1);
+        $("#bg").css("opacity", 0);
     });
 
     // Closes the sidebar menu

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Community Hero</title>
+    <title>ommunity Hero</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,13 +43,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav app_name" href="#">Community Hero</a>
+                <a class="navbar-brand topnav app_name" href="/"><span style="color: #444">community</span>Hero</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="" class="btn btn-default btn-lg new_request_button">Submit new request</a>
+                        <a href="/" class="btn btn-default btn-lg new_request_button">Submit new request</a>
                     </li>
                 </ul>
             </div>
@@ -62,21 +62,22 @@
         <div class="form_content">
             <div class="new_request">-&nbsp;&nbsp;New Request&nbsp;&nbsp;-</div>
             <div class="request_form">
-                <div class="request_title">More details about this issue?
+                <div class="request_title">More details about this issue</div>
+
+                <div class="button_form issue_form">
+                    <textarea class="issue_details" name="comment" placeholder="More description about this issue to enable the local municpal to identify the issue efficiently and effectively"></textarea>
                 </div>
 
-                <div class="button_form">
-                    <textarea cols="25" rows="6" name="comment"></textarea>
+                <div class="bottom_buttons_container">
+                    <div class="continue_button bottom_buttons"><a href="javascript:history.back()" class="btn btn-default btn-lg button_style bottom_button">Back</a></div>    
+                    <div class="continue_button bottom_buttons"><a href="/issue5" class="btn btn-default btn-lg button_style bottom_button">Continue</a></div>
                     </div>
-
-            <div class="continue_button"><a href="" class="btn btn-default btn-lg button_style">Back</a></div>    
-            <div class="continue_button"><a href="" class="btn btn-default btn-lg button_style">Continue</a></div>
-            </div>
+                </div>
         </div> 
     </div>
 
     <!-- Footer -->
-    <footer>
+<!--     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -84,7 +85,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

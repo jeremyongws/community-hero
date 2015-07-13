@@ -174,7 +174,7 @@ hr.small {
 
 .services {
     padding: 50px 0;
-    background-color: #0288d1;
+    background-color: #337AB7;
 }
 
 .service-item {
@@ -202,21 +202,32 @@ hr.small {
 
 .portfolio-item {
     margin-bottom: 30px;
+    background-color: #DCE5EC;
 }
 
 .img-portfolio {
     margin: 0 auto;
 }
 
-.img-portfolio:hover {
-    opacity: 0.5;
+.caption {
+    position: absolute;
+    color: #000;
+    text-align: center;
+    padding: 100px;
+    font-size: 20px;
+    opacity: 0;
 }
+
+/*.img-portfolio:hover {
+    opacity: 0.1;
+}*/
+
 
 /* Call to Action */
 
 .call-to-action {
     padding: 50px 0;
-    background-color: #0288d1;
+    background-color: #337AB7;
 }
 
 .call-to-action .btn {
